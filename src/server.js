@@ -1,12 +1,14 @@
 // require http module
 const fs = require('fs');
-const https = require('https');
+const http = require('http');
 
 
 // Require app the backbone project file
 const app = require('./app');
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8002;
+
+const server = http.createServer(app);
 
 // Create server and bootstrap the app
 async function startServer() {
