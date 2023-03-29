@@ -1,0 +1,5 @@
+name: IBEDC PAYMENT SOLUTIONS
+on:
+  push:
+    branches: [ main, develop ]  #Run from the branch you have on your github
+    
