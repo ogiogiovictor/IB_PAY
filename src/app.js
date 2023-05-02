@@ -4,11 +4,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 
-//Determine if this should be removed
-const bodyParser = require('body-parser');
-
-
-
 //.env file implementation
 require('dotenv').config();
 
@@ -24,18 +19,23 @@ app.use(cors({
     origin: 'http://localhost:3000'
 }));
 
-//If there is an error this should be removed
-app.use(bodyParser.json());
-
 //This is a middleware that logs the request
 app.use(morgan('combined'));
 
 //This is a middleware that sets security headers
 app.use(helmet());
 
+// Middleware to set the Content-Type header to application/json
+function setContentType(req, res, next) {
+    res.set('Content-Type', 'application/json');
+    next();
+}
+
+app.use(setContentType);
 
 //This is a middleware that parses the request body
 app.use(express.json());
+
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 
