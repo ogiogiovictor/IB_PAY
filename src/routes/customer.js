@@ -14,6 +14,6 @@ router.get('/pending_customers', customerController.getCapturedCustomers); //Que
 router.post('/post_customer_crmd', crmdController.addCustomer);
 router.post('/update_crmd_doc', crmdController.approveCustomer);
 router.post('/add_customer', customerController.newCustomer);
- //router.get('/pending_customers/:userid/:status', customerController.getPendingCustomer);
+router.post('/update_customers_approve', customerController.updateCustomer);
 
 module.exports = router;

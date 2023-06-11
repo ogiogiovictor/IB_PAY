@@ -1,4 +1,4 @@
-const { addNewCustomer, getCustomer } = require('../model/customer_model');
+const { addNewCustomer, getCustomer, saveCustomer } = require('../model/customer_model');
 const { sendSuccess, sendError, sendCreated } = require('../../services/utils');
 
 async function newCustomer(req, res){
@@ -30,8 +30,26 @@ async function getCapturedCustomers(req, res){ //getCapturedCustomers
 
 }
 
+async function updateCustomer(req, res) {
+    const customerData = req.body;
+    if(!customerData.id || !customerData.status || !customerData.userid){
+        sendError(res, 400, "Parameters to process page missing");
+    }
+
+    try{
+        const response =  saveCustomer(customerData.id, customerData.status, customerData.userid);
+        sendSuccess(res, 200, response);
+       
+     }catch(e){
+        sendError(res, 400, e.message);
+    }
+
+}
+
+
+
 module.exports = {
     newCustomer,
     getCapturedCustomers,
-    
+    updateCustomer
 }
