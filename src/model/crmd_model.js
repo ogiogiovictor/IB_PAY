@@ -1,5 +1,5 @@
 const axios = require('axios');
-const customer = require('../schema/customer'); //Schema for the Model Customer
+const customer = require('../schema/crmd'); //Schema for the Model CRMD
 const mongoose = require('mongoose');
 
 async function findCustomer(dataArray){

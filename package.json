@@ -6,7 +6,7 @@
   "scripts": {
     "watch" : "nodemon src/server.js",
     "start" : "node src/server.js",
-    "cluster": "pms start src/server.js -i max",
+    "cluster": "pm2 start src/server.js -i max",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ogiogio victor",
