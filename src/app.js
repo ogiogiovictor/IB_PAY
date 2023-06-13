@@ -44,9 +44,9 @@ app.use('/api/v1', customerRoute);
 
 
 //This was done when dealing with react that was built in the server
-app.get('/*', (req, res) => { 
-    //res.json({message: "Hello World"});
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// app.get('/*', (req, res) => { 
+//    // res.json({message: "Hello World"});
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 
 module.exports = app;
