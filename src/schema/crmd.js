@@ -13,6 +13,17 @@ const crmdSchema = new Schema({
     new_phone: {
         type: String,
     },
+    account_number: {
+        type: String,
+    },
+
+    region: {
+        type: String,
+    },
+
+    business_hub: {
+        type: String,
+    },
 
     address: {
         type: String,

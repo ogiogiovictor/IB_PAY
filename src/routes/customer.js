@@ -8,6 +8,7 @@ const router = express.Router();
 router.get('/get_customers', crmdController.allCustomer);
 //router.get('/pending_customers/:buid', customerController.getCapturedCustomers); //params
 router.get('/pending_customers', customerController.getCapturedCustomers); //Query 
+router.get('/my_approvals/:user_id', customerController.getApprovedCustomers); //Query 
 
 
 

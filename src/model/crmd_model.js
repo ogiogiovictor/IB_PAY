@@ -62,11 +62,31 @@ async function saveCustomer(id, status, userId) {
        return customer;
       
   }
+
+
+
+  async function myapprovalcrmd(id){
+
+    try {
+     
+        const customers = await customer.find({ user_id: { $in: [id] } });
+        // Perform any operations with the fetched customers
+        return customers;
+        // ...
+      } catch (error) {
+        // Handle any errors that occur during the database query
+        console.error(error);
+        return error;
+        
+      }
+
+}
   
 
 
 
 module.exports = { 
+    myapprovalcrmd,
     getCustomer,
     getAllCustomers,
     getLatestCustomer,

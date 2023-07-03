@@ -1,4 +1,5 @@
-const { addNewCustomer, getCustomer, saveCustomer } = require('../model/customer_model');
+const { addNewCustomer, getCustomer, saveCustomer, myapprovalcusotomer } = require('../model/customer_model');
+const { myapprovalcrmd } = require('../model/crmd_model');
 const { sendSuccess, sendError, sendCreated } = require('../../services/utils');
 
 async function newCustomer(req, res){
@@ -8,8 +9,16 @@ async function newCustomer(req, res){
         sendError(res, 400, "Please enter a valid customer type");
     }
 
-    await addNewCustomer(customerData);
-    sendCreated(res, 201, "Customer Successfully Created");
+    try {
+
+        await addNewCustomer(customerData);
+        sendCreated(res, 201, customerData);
+        
+    } catch (error) {
+        sendError(res, 400, error);
+    }
+
+   
 }
 
 
@@ -47,9 +56,33 @@ async function updateCustomer(req, res) {
 }
 
 
+async function getApprovedCustomers(req, res){
+
+    const userid = req.params.user_id;
+   // const buid = req.params.buid
+    const customer = await myapprovalcusotomer(userid);
+    const crmd = await myapprovalcrmd(userid);
+
+    const customerObject = {
+        "new_customers" : customer,
+        "updated_customer": crmd,
+    };
+
+    if(customer){
+        sendSuccess(res, 200, customerObject);
+    }else {
+        sendError(res, 400, "No Customer Record Found");
+    }
+    //const userid = req.query;
+    
+
+}
+
+
 
 module.exports = {
     newCustomer,
     getCapturedCustomers,
-    updateCustomer
+    updateCustomer,
+    getApprovedCustomers
 }
